@@ -10,7 +10,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
 
 app.listen(5000, function(){
-    console.log("Server started on port 5000");
+    console.log("iNotebook backend server started at port 5000");
 })
 
 
