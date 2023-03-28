@@ -56,6 +56,8 @@ const Notes = () => {
             title="etitle"
             value={note.etitle}
             onChange={onChange}
+            minLength={5}
+            required
           />
         </Form.Group>
 
@@ -67,6 +69,8 @@ const Notes = () => {
             title="edescription"
             value={note.edescription}
             onChange={onChange}
+            minLength={5}
+            required
           />
         </Form.Group>
 
@@ -87,7 +91,7 @@ const Notes = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClick}>
+          <Button disabled={note.etitle.length<5 || note.edescription.length<5} variant="primary" onClick={handleClick}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -95,6 +99,9 @@ const Notes = () => {
 
       <div className="row my-3">
         <h2>Your Notes</h2>
+        <div className="container mx-2">
+          {notes.length===0 && "No notes to display" }
+        </div>
         {notes.map((note) => {
           return (
             <NoteItem updateNote={updateNote} key={note._id} note={note} />
