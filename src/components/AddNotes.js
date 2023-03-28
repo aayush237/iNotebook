@@ -10,8 +10,8 @@ const AddNotes = () => {
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
   const handleClick = (e) => {
-    e.preventDefault()
-    addNote(note.title, note.description, "tag: default");
+    e.preventDefault();
+    addNote(note.title, note.description, note.tag);
   };
 
   const onChange = (e) => {
@@ -28,6 +28,7 @@ const AddNotes = () => {
           <Form.Control
             type="text"
             name="title"
+            title="title"
             placeholder="Enter title"
             onChange={onChange}
           />
@@ -38,12 +39,21 @@ const AddNotes = () => {
           <Form.Control
             type="text"
             name="description"
+            title="description"
             placeholder="Description"
             onChange={onChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+
+        <Form.Group className="mb-3" controlId="formBasicTag">
+          <Form.Label>Tag</Form.Label>
+          <Form.Control
+            type="text"
+            name="tag"
+            title="tag"
+            placeholder="Tag"
+            onChange={onChange}
+          />
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleClick}>
           Add Note

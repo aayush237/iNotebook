@@ -18,7 +18,7 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 
 //Route 2: Add notes using post request at 'addnotes' endpoint: Login required
 router.post(
-  "/addnotes",
+  "/addnote",
   fetchuser,
   [
     body("title", "Enter a valid title").isLength({ min: 3 }),
