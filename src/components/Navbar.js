@@ -45,11 +45,11 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <Link to="/login" className="btn mx-2 btn-primary">
+          <Link to="/login" className="btn mx-1 btn-primary">
             Login
           </Link>
 
-          <Link to="/register" className="btn mx-2 btn-primary">
+          <Link to="/register" className="btn mx-1 btn-primary">
             Register
           </Link>
         </div>

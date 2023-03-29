@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
 
@@ -31,7 +31,7 @@ const Notes = () => {
     e.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
     handleClose();
-    console.log("editing");
+    props.showAlert("Note updated successfully", "success")
   };
 
   const onChange = (e) => {
@@ -40,7 +40,7 @@ const Notes = () => {
 
   return (
     <>
-      <AddNotes />
+      <AddNotes showAlert={props.showAlert} />
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -104,7 +104,7 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem updateNote={updateNote} key={note._id} note={note} />
+            <NoteItem updateNote={updateNote} key={note._id} showAlert={props.showAlert} note={note} />
           );
         })}
       </div>
