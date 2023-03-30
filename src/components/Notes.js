@@ -5,10 +5,14 @@ import NoteItem from "./NoteItem";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
+  let navigate = useNavigate();
+
   const { notes, getNotes, editNote } = context;
+
 
   const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
@@ -18,7 +22,14 @@ const Notes = (props) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    getNotes();
+    if (localStorage.getItem('token')) {
+      getNotes();      
+      console.log("found token");
+      console.log(localStorage.getItem('token'));
+    } else {
+      console.log("no token");
+      navigate("/login");
+    }
     //eslint-disable-next-line
   }, []);
 
@@ -100,7 +111,7 @@ const Notes = (props) => {
       <div className="row my-3">
         <h2>Your Notes</h2>
         <div className="container mx-2">
-          {notes.length===0 && "No notes to display" }
+          {notes.length===0 && "No notes to display"}
         </div>
         {notes.map((note) => {
           return (

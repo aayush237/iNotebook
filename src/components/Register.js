@@ -22,9 +22,10 @@ const Register = (props) => {
         console.log(json);
         if(json.success){
           //Save the auth token and redirect
-          localStorage.setItem('token', json.authtoken);
+          localStorage.setItem('token', json.authToken);
           navigate("/");
           props.showAlert("Account created successfully", "success")
+          console.log(localStorage.getItem('token'));
         }
         else{
           props.showAlert("Invalid credentials", "danger")
@@ -35,8 +36,11 @@ const Register = (props) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
       };
   return (
+    <>
+    <div className="mt-3">
+    <h2>Register to use iNotebook</h2>
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicName">
+      <Form.Group className="mb-3 mt-4" controlId="formBasicName">
         <Form.Label>Enter your name</Form.Label>
         <Form.Control type="name" name="name" onChange={onChange} placeholder="Enter name" />
       </Form.Group>
@@ -59,10 +63,12 @@ const Register = (props) => {
         <Form.Label>Confirm password</Form.Label>
         <Form.Control type="password" name="password" onChange={onChange}  placeholder="Re-enter your password" required minLength={8} />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" className='mt-2' type="submit">
         Register
       </Button>
     </Form>
+    </div>
+    </>
   )
 }
 
